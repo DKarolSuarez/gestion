@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi primer Login</title>
+    <!--JQUERY-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <!-- Nuestro css-->
+    <link rel="stylesheet" type="text/css" href="static/css/index.css" th:href="@{/css/index.css}">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #fbc2eb, #a6c1ee);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .modal-dialog {
+            max-width: 400px;
+        }
+        .modal-content {
+            background-color: #6c757d; /* Fondo gris bonito */
+            padding: 30px;
+            border-radius: 15px; /* Esquinas redondeadas */
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .user-img img {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 15px;
+            border-radius: 50%;
+        }
+        .form-group input {
+            background-color: #f2f2f2;
+            border: none;
+            padding: 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .forgot a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem; /* Tamaño de fuente h3 */
+        }
+        .forgot a:hover {
+            text-decoration: underline;
+        }
+        .input-group-text {
+            background-color: #f2f2f2;
+            border: none;
+        }
+        .fa-user, .fa-lock {
+            color: black; /* Color negro para los iconos */
+            margin-right: 10px; /* Espacio entre el icono y el texto */
+        }
+    </style>
+</head>
+<body>
+    <div class="modal-dialog text-center">
+        <div class="col-12 main-section">
+            <div class="modal-content">
+                <div class="col-12 user-img">
+                    <img src="static/img/user.png" th:src="@{/img/user.png}"/>
+                </div>
+                <form class="col-12" th:action="@{/login}" method="post">
+                    <div class="form-group input-group" id="user-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Nombre de usuario" name="id" required/>
+                    </div>
+                    <div class="form-group input-group" id="contrasena-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        </div>
+                        <input type="password" class="form-control" placeholder="Contraseña" name="clave" required/>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Ingresar </button>
+                </form>
+                <div class="col-12 forgot">
+                    <a href="#">¿Recordar contraseña?</a>
+                </div>
+                <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                    Nombre de usuario o contraseña inválidos.
+                </div>
+                <div th:if="${param.logout}" class="alert alert-success" role="alert">
+                    Has cerrado sesión correctamente.
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
